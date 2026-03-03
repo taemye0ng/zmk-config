@@ -20,4 +20,4 @@
 ---
 include:
   - board: xiao_ble
-    shield: zmk_uno
+    shield: settings_reset
