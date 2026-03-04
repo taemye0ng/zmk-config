@@ -10,11 +10,6 @@
         &mkp LCLK
         &mkp RCLK
       >;
-
-      sensor-bindings = <
-        &msc SCRL_UP
-        &msc SCRL_DOWN
-      >;
     };
   };
 };
