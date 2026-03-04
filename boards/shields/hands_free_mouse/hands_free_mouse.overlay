@@ -9,8 +9,8 @@
     debounce-release-ms = <5>;
 
     input-gpios = <
-      &gpio0 2 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)
-      &gpio0 3 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)
+      &gpio0 2 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)   /* D0 left click */
+      &gpio0 3 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)   /* D1 right click */
     >;
   };
 
@@ -35,8 +35,8 @@
       compatible = "zmk,encoder";
       label = "SCROLL_ENC";
 
-      a-gpios = <&gpio0 28 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
-      b-gpios = <&gpio0 29 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+      a-gpios = <&gpio0 5 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;   /* D5 */
+      b-gpios = <&gpio1 11 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;  /* D6 */
 
       steps = <24>;
       triggers = <&scroll_cw &scroll_ccw>;
