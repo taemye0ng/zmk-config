@@ -1,21 +1,20 @@
+#include <behaviors.dtsi>
 #include <dt-bindings/zmk/mouse.h>
 
 / {
-    keymap {
-        compatible = "zmk,keymap";
+  keymap {
+    compatible = "zmk,keymap";
 
-        default_layer {
+    default_layer {
+      bindings = <
+        &mkp LCLK
+        &mkp RCLK
+      >;
 
-            bindings = <
-                &mkp LCLK
-                &mkp RCLK
-            >;
-
-            sensor-bindings = <
-                &msc SCRL_UP
-                &msc SCRL_DOWN
-            >;
-
-        };
+      sensor-bindings = <
+        &msc SCRL_UP
+        &msc SCRL_DOWN
+      >;
     };
+  };
 };
