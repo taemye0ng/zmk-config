@@ -14,32 +14,17 @@
     >;
   };
 
-  behaviors {
-    scroll_cw: scroll_cw {
-      compatible = "zmk,behavior-mouse-scroll";
-      #binding-cells = <0>;
-      scroll-direction = <0>;
-    };
-
-    scroll_ccw: scroll_ccw {
-      compatible = "zmk,behavior-mouse-scroll";
-      #binding-cells = <0>;
-      scroll-direction = <1>;
-    };
+  left_encoder: left_encoder {
+    compatible = "alps,ec11";
+    a-gpios = <&gpio0 5 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;  /* D5 */
+    b-gpios = <&gpio1 11 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>; /* D6 */
+    steps = <24>;
+    status = "okay";
   };
 
-  sensors {
+  sensors: sensors {
     compatible = "zmk,keymap-sensors";
-
-    scroll_encoder: scroll_encoder {
-      compatible = "zmk,encoder";
-      label = "SCROLL_ENC";
-
-      a-gpios = <&gpio0 5 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;   /* D5 */
-      b-gpios = <&gpio1 11 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;  /* D6 */
-
-      steps = <24>;
-      triggers = <&scroll_cw &scroll_ccw>;
-    };
+    sensors = <&left_encoder>;
+    triggers-per-rotation = <24>;
   };
 };
