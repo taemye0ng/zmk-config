@@ -1,0 +1,30 @@
+/ {
+  chosen {
+    zmk,kscan = &kscan0;
+  };
+
+  kscan0: kscan {
+    compatible = "zmk,kscan-gpio-direct";
+    debounce-press-ms = <5>;
+    debounce-release-ms = <5>;
+
+    input-gpios = <
+      &gpio0 2  (GPIO_PULL_UP | GPIO_ACTIVE_LOW)
+      &gpio0 3  (GPIO_PULL_UP | GPIO_ACTIVE_LOW)
+    >;
+  };
+
+  sensors {
+    compatible = "zmk,keymap-sensors";
+
+    scroll_encoder: scroll_encoder {
+      compatible = "zmk,encoder";
+      label = "SCROLL_ENC";
+
+      a-gpios = <&gpio0 28 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+      b-gpios = <&gpio0 29 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+
+      steps = <24>;
+    };
+  };
+};
