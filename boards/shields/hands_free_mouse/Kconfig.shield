@@ -1,0 +1,2 @@
+config SHIELD_HANDS_FREE_MOUSE
+    def_bool $(shields_list_contains,hands_free_mouse)
