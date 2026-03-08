@@ -1,30 +1,42 @@
+#include <dt-bindings/zmk/matrix_transform.h>
+
 / {
-  chosen {
-    zmk,kscan = &kscan0;
-  };
+    chosen {
+        zmk,kscan = &kscan0;
+        zmk,matrix-transform = &default_transform;
+    };
 
-  kscan0: kscan {
-    compatible = "zmk,kscan-gpio-direct";
-    debounce-press-ms = <5>;
-    debounce-release-ms = <5>;
+    kscan0: kscan {
+        compatible = "zmk,kscan-gpio-direct";
+        debounce-press-ms = <5>;
+        debounce-release-ms = <5>;
 
-    input-gpios = <
-      &gpio0 2 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)   /* D0 left click */
-      &gpio0 3 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)   /* D1 right click */
-    >;
-  };
+        input-gpios = <
+            &gpio0 2 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)  /* D0 left click */
+            &gpio0 3 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)  /* D1 right click */
+        >;
+    };
 
-  left_encoder: left_encoder {
-    compatible = "alps,ec11";
-    a-gpios = <&gpio0 5 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;  /* D5 */
-    b-gpios = <&gpio1 11 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>; /* D6 */
-    steps = <24>;
-    status = "okay";
-  };
+    default_transform: matrix_transform {
+        compatible = "zmk,matrix-transform";
+        rows = <1>;
+        columns = <2>;
+        map = <
+            RC(0,0) RC(0,1)
+        >;
+    };
 
-  sensors: sensors {
-    compatible = "zmk,keymap-sensors";
-    sensors = <&left_encoder>;
-    triggers-per-rotation = <24>;
-  };
+    left_encoder: left_encoder {
+        compatible = "alps,ec11";
+        a-gpios = <&gpio0 5 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>; /* D5 */
+        b-gpios = <&gpio1 11 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>; /* D6 */
+        steps = <24>;
+        status = "okay";
+    };
+
+    sensors: sensors {
+        compatible = "zmk,keymap-sensors";
+        sensors = <&left_encoder>;
+        triggers-per-rotation = <24>;
+    };
 };
