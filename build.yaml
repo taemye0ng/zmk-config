@@ -1,3 +1,6 @@
 include:
   - board: xiao_ble
     shield: hands_free_mouse
+
+  - board: xiao_ble
+    shield: tester_xiao
